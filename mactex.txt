@@ -1,0 +1,52 @@
+MacTeX-2021 ReadMe
+For Mojave (macOS 10.14) and Higher
+Arm and Intel
+
+This installer provides all the software needed to use the TeX typesetting system on Mac OS X. All of the software is fully configured and ready to use. Included are
+
+	•	the actual TeX program, and the XeTeX and LuaTeX extended versions with Unicode and native font support;
+	•	macro packages, such as LaTeX, AMSTeX, and ConTeXt
+	•	TeXShop, a graphical user interface for TeX
+	•	LaTeXit, an equation editor
+	•	TeX Live Utility, a program to administer and update TeX Live
+	•	BibDesk, a bibliography manager
+	•	Ghostscript 9.53.3, a free postscript interpreter used by certain TeX utilities
+
+The underlying TeXLive distribution is extensive, containing most binaries, fonts, styles, and packages used in the TeX community. It is a repackaging of the full TeX Live distribution from the TeX Users Group (TUG), and installs that distribution exactly as it would appear if installed from the TeX Live DVD.
+
+A custom install option is provided for users who want only part of the package. The package contains Ghostscript; users who already have Ghostscript may want to use custom install to avoid the version provided here.
+
+In particular, this custom install can be used to install the Ghostscript dynamic library, which is required by only one program, dvisvgm.
+
+This package is fully notarized, as required by the Catalina and later versions of macOS.
+
+Among the programs installed by the package is TeXShop, a graphical interface to the TeX typesetting tools. TeXShop will be in your Applications folder in a subfolder named TeX and you can drag its icon to the dock if you wish. The TeX folder contains a READ ME FIRST file giving technical details of TeX Live for experienced users, and explaining how to start using and learning TeX for beginners.
+
+Some programs in TeX need to know whether you are using letter-size paper or A4-size paper. The installer tries to guess the answer from your printer's default paper setting. This will work in almost all cases. If you run into problems, run TeX Live Utility and select "Change Paper Size..." in the Actions menu.
+
+The TeX typesetting system consists of several command line programs and a large number of supporting files. These tools are installed in /usr/local, a directory not visible in the Finder. Inside the system Library folder you will find a subfolder named TeX; the Root file inside this folder is a link to the TeX directory tree which makes it visible to the Finder. So you can examine the files if you are curious.  It is usually not necessary to look at the command line files because they are automatically accessed by TeX as needed.
+
+If you have used TeX on another system, you may have needed to modify $TEXINPUTS, $PATH, and other shell variables; these are handled automatically on Mac OS X. Occasionally you will want to add additional style files and the like to TeX; to do so, create the directory "texmf" inside your personal Library folder in your home directory, and put additional files in subdirectories of this folder. For instance, LaTeX will find any file in
+
+	~/Library/texmf/tex/latex
+
+or a subdirectory of this folder.
+
+For more information about TeX, see http://tug.org, in particular http://tug.org/begin.html for links to a number of introductory resources. For more information about this MacTeX distribution, see http://tug.org/mactex.
+
+Using Ghostscript in the Far East requires additional work. Standard TeX fonts do not suffice for these extensive character sets, and special Adobe CID Fonts are used; these are multibyte type 1 fonts. These fonts often come from both the system and TeX, so it is essential that Ghostscript knows about them.
+
+In 2015, Munehiro Yamamoto contacted us to suggest this support, and then very extensive work was done by Bruno Voisin, Kuroki Yusuke, and Norbert Preining to provide the support.
+
+Afterward, Norbert Preining wrote a script to search a user's computer and configure Ghostscript to support available CJK fonts. That script supports Chinese, Japanese, and Korean and is now part of TeX Live. Users in these countries are encouraged to run it.  To see the current state of the script, go to https://github.com/texjporg/cjk-gs-support. To run the script in TeX Live, open Terminal in /Applications/Utilities, type the following lines, pushing RETURN after each one, and type your password when it is requested.
+
+	sudo tlmgr --repository https://contrib.texlive.info/current \
+                  install cjk-gs-integrate-macos
+	sudo cjk-gs-integrate-macos
+
+To get documentation about this script, type
+
+	texdoc cjk-gs-integrate
+
+
+
